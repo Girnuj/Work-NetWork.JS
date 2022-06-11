@@ -1,8 +1,10 @@
 const { Router } = require('express');
+const { allProvincias, provDB } = require('../Controllers/Provincias');
 const { allRubros } = require('../Controllers/Rubros');
 const { allSubRubros } = require('../Controllers/SubRubros');
 
-const { Rubro, Subrubro } = require('../db');
+const { Rubro, Subrubro, Provincia, Localidad  } = require('../db');
+
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -55,5 +57,18 @@ router.post('/SubRubro', async (req, res) => {
 		console.log('REVENTO POST', error);
 	}
 });
+
+router.get('/provincias', async (req,res, next) => {
+    try {
+        res.status(200).send(
+            await Provincia.findAll({
+              attributes: { exclude: ["createdAt", "updatedAt"] },
+             
+            })
+          );
+    } catch (error) {
+        next(error)
+    }
+})
 
 module.exports = router;

@@ -18,10 +18,14 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
+const { allProvincias } = require('./src/Controllers/Provincias.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
+
+  allProvincias();
+
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
