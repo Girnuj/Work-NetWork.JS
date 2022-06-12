@@ -18,13 +18,16 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
+const { localidadesChubut, localidadesMendoza } = require('./src/Controllers/Localidades.js');
 const { allProvincias } = require('./src/Controllers/Provincias.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
 
   allProvincias();
+  localidadesChubut();
+  localidadesMendoza();
 
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console

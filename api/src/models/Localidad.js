@@ -12,10 +12,10 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        CP:{
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true,
-        },
+        // CP:{
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     unique: true,
+        // },
     })
 }
